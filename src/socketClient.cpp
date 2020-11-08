@@ -59,7 +59,7 @@ char buf[BUFFERT];//发送缓冲区
 	}
     //得到文件大小（bytes）
     if (stat(this->fileName, &buffer)==-1){
-		printf("fail to get file status%s\n");
+		printf("fail to get status of file :%s\n", this->fileName);
 		return -1;
 	}
 	else{
@@ -69,7 +69,7 @@ char buf[BUFFERT];//发送缓冲区
     //清空发送缓冲区
     bzero(buf, BUFFERT);
     //连接服务端
-    if(connect(this->fd,(struct sockaddr*)&this->servAddr,sizeof(struct sockaddr_in))==-1){
+    if(connect(this->sockfd,(struct sockaddr*)&this->servAddr,sizeof(struct sockaddr_in))==-1){
         printf("fail to connect to server\n");
         return -1;
     }

@@ -26,7 +26,6 @@ private:
     struct timeval start, stop, delta;
     suseconds_t microstart, microstop, microdelta;//用于计算准确差值时间的变量
 public:
-    timeCounter();
 
     /**
      * @brief           开始计时（取得当前时间）

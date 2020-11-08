@@ -24,6 +24,9 @@ OBJ = $(patsubst %.cpp, $(DIR_OBJ)/%.o, $(notdir $(SRC)))
 
 DBG_OBJ = $(patsubst %.cpp, $(DIR_DBG)/obj/%.o, $(notdir $(SRC)))
 
+
+all: release debug
+
 release: ./bin/main
 
 ./bin/main: $(OBJ)
@@ -40,6 +43,9 @@ $(DIR_OBJ_DBG)/%.o: $(DIR_SRC_DBG)/%.cpp
 
 clean:
 	rm -rf ./obj/*
+	rm -rf ./debug/obj/*
+	rm ./bin/main
+	rm ./debug/bin/main
 
 dbgprint:
 	@echo $(SRC)

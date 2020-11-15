@@ -1,4 +1,4 @@
-#include "socketUtil.h"
+#include "socketServer.h"
 
 socketServer::socketServer(char *port){
     this->srv_port = atoi(port);
@@ -26,8 +26,8 @@ socketServer::socketServer(char *port, int backlog, char *fileName){
 int socketServer::create_server_socket(void){
 
     //获得套接字
-    this->sockfd = socket(PF_INET, SOCK_STREAM, 0);
-    if(this->sockfd == -1){
+    this->listenfd = socket(PF_INET, SOCK_STREAM, 0);
+    if(this->listenfd == -1){
         printf("[server] error: fail to get sockfd\n");
         return -1;
     }
@@ -39,7 +39,7 @@ int socketServer::create_server_socket(void){
     this->srv_sock_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
     //绑定
-    if(bind(this->sockfd, (struct sockaddr*)&(this->srv_sock_addr), sizeof(struct sockaddr_in)) == -1){
+    if(bind(this->listenfd, (struct sockaddr*)&(this->srv_sock_addr), sizeof(struct sockaddr_in)) == -1){
         printf("[server] error: fail to bind\n");
         return -1;
     }
@@ -47,7 +47,7 @@ int socketServer::create_server_socket(void){
     //创建绑定均成功，将标志置位
     this->isSocketCreated = 1;
 
-    return this->sockfd;
+    return this->listenfd;
 }
 
 int socketServer::listen_client(void){
@@ -58,7 +58,7 @@ int socketServer::listen_client(void){
     }
 
     int ret = 0;
-    ret = listen(this->sockfd, this->backlog);
+    ret = listen(this->listenfd, this->backlog);
 
     //置位正在监听标志
     this->isListening = 1;
@@ -81,7 +81,7 @@ struct tm *tmi;
         return -1;
     }
 
-    this->connfd = accept(this->sockfd, (struct sockaddr*)&this->cli_sock_addr, &cli_addr_len);
+    this->connfd = accept(this->listenfd, (struct sockaddr*)&this->cli_sock_addr, &cli_addr_len);
     if(this->connfd == -1){
         printf("[server] error: fail to accept client");
         return -1;
@@ -132,7 +132,7 @@ struct tm *tmi;
         bzero(recv_buf, BUFFERT);
         readSize = read(this->connfd, recv_buf, BUFFERT);
     }
-    close(this->sockfd);
+    close(this->listenfd);
     close(this->fd);
     close(this->connfd);
 

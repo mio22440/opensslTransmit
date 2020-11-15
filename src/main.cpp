@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string.h>
 
-#include "socketUtil.h"
+#include "sslSocketClient.h"
+#include "sslSocketServer.h"
 
 using namespace std;
 
@@ -26,10 +27,9 @@ int main(int argc, char **argv){
     }
     else if((argc == 4) && (strcmp("server", argv[1]) == 0)){
         //执行server工作:指定了文件名的情况
-        socketServer server(argv[2], argv[3]);
-        server.create_server_socket();
-        server.listen_client();
-        ret = server.fileReceive();
+        sslSocketServer server(argv[2], argv[3], "../keys/cacert.pem", "../keys/privkey.pem");
+        server.serverInit();
+        ret = server.sslFileRecv();
         if(ret == -1){
             printf("[server] fail to receive file\n");
             return -1;
@@ -37,10 +37,9 @@ int main(int argc, char **argv){
     }
     else if((argc == 3) && (strcmp("server", argv[1]) == 0)){
         //未指定文件名的情况
-        socketServer server(argv[2]);
-        server.create_server_socket();
-        server.listen_client();
-        ret = server.fileReceive();
+        sslSocketServer server(argv[2], "../keys/cacert.pem", "../keys/privkey.pem");
+        server.serverInit();
+        ret = server.sslFileRecv();
         if(ret == -1){
             printf("[server] fail to receive file\n");
             return -1;

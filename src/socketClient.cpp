@@ -12,7 +12,7 @@
  * 2020-11-06     1.0         catfee      内容
  */
 
-#include "socketUtil.h"
+#include "socketClient.h"
 
 socketClient::socketClient(char *ipSrv, char *portSrv, char *fileName){
     this->ipSrv = ipSrv;

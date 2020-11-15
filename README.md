@@ -1,7 +1,7 @@
 # opensslTransmit
 ## 基于openssl的加密文件传输软件
 
-## console分支
+## ssl-console分支
 
 ### 目录结构
 ```

@@ -16,4 +16,9 @@ int catError(const char *sender, const char *error){
     printf("[%s] error: %s\n", sender, error);
     return -1;
 }
+
+int catLog(const char *sender, const char* log){
+    printf("[%s] %s\n", sender, log);
+    return 1;
+}
 /*******************definition end************************/

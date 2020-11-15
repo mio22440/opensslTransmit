@@ -40,14 +40,16 @@ sslSocketServer::sslSocketServer(char *port, int backlog, char *fileName, const 
 
 
 
-int sslSocketServer::serverInit(void){
+int sslSocketServer::sslServerInit(void){
     this->create_server_socket();
     this->listen_client();
-    this->sslSrvInit();
+    this->sslLibSrvInit();
+
+    return 1;
 }
 
 
-int sslSocketServer::sslSrvInit(void){
+int sslSocketServer::sslLibSrvInit(void){
     if(!this->isListening){
         return catError("server", "is not listening, call listenClient() first");
     }
@@ -82,10 +84,12 @@ int sslSocketServer::sslSrvInit(void){
 
 int sslSocketServer::sslFileRecv(void){
     /************************ local var start ********************/
-int readSize = 0;//一次read()从客户端读取的字节数
-int writeSize = 0;//一次write()写入文件的字节数
+int fileWriteSize = 0;
 
-char recv_buf[BUFFERT];
+int sslWriteSize = 0;//一次SSL_write()发送的字节数
+int sslReadSize = 0;//一次SSL_read()读取的字节数
+char sslWriteBuf[BUFFERT+1];//发送缓冲区
+char sslReadBuf[BUFFERT+1];
 unsigned int cli_addr_len = sizeof(struct sockaddr_in);//客户端地址结构长度
 //日期和时间
 time_t intps;
@@ -113,7 +117,7 @@ struct tm *tmi;
 
     //设置非阻塞io,使下一步建立连接的函数 ssl_accept() 立即返回而不阻塞
     int flags = fcntl(this->connfd, F_GETFL, 0);
-    fcntl(this->connfd, F_SETFL, flags & ~O_NONBLOCK);
+    //fcntl(this->connfd, F_SETFL, flags & ~O_NONBLOCK);
 
     //建立ssl连接
     if(SSL_accept(this->ssl) == -1){
@@ -128,48 +132,50 @@ struct tm *tmi;
         //获取日期和时间
         intps = time(NULL);
         tmi = localtime(&intps);
-        sprintf(this->fileName, "clt.%d.%d.%d.%d.%d.%d", 1900+tmi->tm_year, tmi->tm_mon+1, tmi->tm_mday, tmi->tm_hour, tmi->tm_min, tmi->tm_sec);
+        sprintf(this->fileName, "./test/fileRecv/clt.%d.%d.%d.%d.%d.%d", 1900+tmi->tm_year, tmi->tm_mon+1, tmi->tm_mday, tmi->tm_hour, tmi->tm_min, tmi->tm_sec);
     }
 
     //创建文件
     if ((fd=open(this->fileName,O_CREAT|O_WRONLY,0600))==-1)
-        {
-            printf("[server] error: fail to create output file\n");
-            return -1;
-        }
+    {
+        printf("[server] error: fail to create output file\n");
+        return -1;
+    }
 
     //清空接收缓存区
-    bzero(recv_buf, BUFFERT);
+    bzero(sslReadBuf, BUFFERT);
     //清空接收文件总字节数
     this->recvFileSize = 0;
-    readSize = SSL_read(this->ssl, recv_buf, BUFFERT);
-    while(readSize){
-        if(readSize == -1){
+    sslReadSize = SSL_read(this->ssl, sslReadBuf, BUFFERT);
+    while(sslReadSize){
+        if(sslReadSize == -1){
             printf("[server] error: fail to receive\n");
             return -1;
         }
         //写入文件
-        writeSize = write(this->fd, recv_buf, readSize);
-        if(writeSize == -1){
+        fileWriteSize = write(this->fd, sslReadBuf, sslReadSize);
+        if(fileWriteSize == -1){
             printf("[server] error: fail to write file\n");
             return -1;
         }
-        this->recvFileSize += writeSize;
-        bzero(recv_buf, BUFFERT);
-        readSize = SSL_read(this->ssl, recv_buf, BUFFERT);
+        this->recvFileSize += fileWriteSize;
+
+        sslWriteSize = SSL_write(this->ssl, "recvOK", 6);
+        bzero(sslReadBuf, BUFFERT);
+        sslReadSize = SSL_read(this->ssl, sslReadBuf, BUFFERT);
     }
     close(this->listenfd);
     close(this->fd);
     close(this->connfd);
     #ifdef DEBUG_VER
-    printf("socket fd closed\n");
+    catLog("server", "socket fd closed\n");
     #endif
 
     SSL_shutdown(this->ssl);
     SSL_free(this->ssl);
     SSL_CTX_free(this->ctx);
     #ifdef DEBUG_VER
-    printf("ssl closed\n");
+    catLog("server", "ssl closed\n");
     #endif
 
     printf("transmit done, receved %ld bytes\n", this->recvFileSize);

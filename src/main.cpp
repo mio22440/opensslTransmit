@@ -4,6 +4,7 @@
 #include "sslSocketClient.h"
 #include "sslSocketServer.h"
 
+
 using namespace std;
 
 int main(int argc, char **argv){
@@ -17,9 +18,9 @@ int main(int argc, char **argv){
     //命令解析
     if((argc == 5) && (strcmp("client", argv[1]) == 0)){
         //执行client工作
-        socketClient client(argv[2], argv[3], argv[4]);
-        client.create_client_socket();
-        ret = client.fileTransfer();
+        sslSocketClient client(argv[2], argv[3], argv[4]);
+        client.sslClientInit();
+        ret = client.sslFileTransfer();
         if(ret == -1){
             printf("[client] fail to transmit file\n");
             return -1;
@@ -27,8 +28,8 @@ int main(int argc, char **argv){
     }
     else if((argc == 4) && (strcmp("server", argv[1]) == 0)){
         //执行server工作:指定了文件名的情况
-        sslSocketServer server(argv[2], argv[3], "../keys/cacert.pem", "../keys/privkey.pem");
-        server.serverInit();
+        sslSocketServer server(argv[2], argv[3], "./certs/cert.crt", "./certs/rsa_aes_private.key");
+        server.sslServerInit();
         ret = server.sslFileRecv();
         if(ret == -1){
             printf("[server] fail to receive file\n");
@@ -37,8 +38,8 @@ int main(int argc, char **argv){
     }
     else if((argc == 3) && (strcmp("server", argv[1]) == 0)){
         //未指定文件名的情况
-        sslSocketServer server(argv[2], "../keys/cacert.pem", "../keys/privkey.pem");
-        server.serverInit();
+        sslSocketServer server(argv[2], "./certs/cert.crt", "./certs/rsa_aes_private.key");
+        server.sslServerInit();
         ret = server.sslFileRecv();
         if(ret == -1){
             printf("[server] fail to receive file\n");

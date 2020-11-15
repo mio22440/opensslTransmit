@@ -40,6 +40,8 @@ int socketClient::create_client_socket(void){
     //初始化成功，置位标志
     this->isClientInitialized = 1;
 
+    catLog("client", "client socket fd create done");
+
     return this->sockfd;
 }
 
@@ -119,6 +121,8 @@ char send_buf[BUFFERT];//发送缓冲区
     printf("transmit size (bytes): %ld\n", this->transSize);
     printf("total size (bytes):%ld\t\n", this->totalSize);
     this->tc.printDuration();
+
+    catLog("client", "file transfer done");
 		
     close(this->sockfd);
     return 0;

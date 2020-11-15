@@ -19,6 +19,7 @@
 /*******************define end************************/
 /*******************declaration start**********************/
 int catError(const char *sender, const char *error);
+int catLog(const char *sender, const char* log);
 /*******************declaration end************************/
 
 #endif

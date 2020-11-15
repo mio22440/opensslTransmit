@@ -44,7 +44,7 @@ public:
      * 
      * @return int 
      */
-    int serverInit(void);
+    int sslServerInit(void);
 
     /**
      * @brief 调用相关函数初始化ssl相关内容
@@ -52,7 +52,7 @@ public:
      *        成功则置位 isSslInitialised
      * @return int 
      */
-    int sslSrvInit(void);
+    int sslLibSrvInit(void);
 
     /**
      * @brief 通过ssl通道接收文件

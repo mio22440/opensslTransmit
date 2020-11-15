@@ -27,6 +27,8 @@
 /*******************declaration start**********************/
 class socketServer{
 protected:
+    int isSocketCreated = 0;//为1时表示初始化完成，已经获得socket并且成功bind
+    int isListening = 0;
     int listenfd;//监听的套接字
     int connfd;//建立连接的套接字
     int fd;//保存文件的文件描述符
@@ -42,10 +44,8 @@ protected:
                                                //因为要编辑保存的文件名，所以先分配空间
     struct sockaddr_in srv_sock_addr;//服务端的socket地址结构
     struct sockaddr_in cli_sock_addr;//客户端的socket地址结构
-public:
-    int isSocketCreated = 0;//为1时表示初始化完成，已经获得socket并且成功bind
-    int isListening = 0;
 
+public:
     //不指定 client 队列大小， 默认为 5
     socketServer(char *port);
     socketServer(char *port, char *fileName);

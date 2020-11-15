@@ -12,14 +12,16 @@
 
 #include <stdlib.h>//for atoi()
 #include <strings.h>//for bzero()
+
 #include "timeCounter.h"
+#include "catError.h"
 /*******************include end************************/
 /************************ define start ********************/
 #define BUFFERT 512 //发送多块文件的缓冲区大小
 /************************ define end ********************/
 /*******************declaration start**********************/
 class socketClient{
-private:
+protected:
     int isClientInitialized = 0;//为1时表示初始化完成，已经获得socket
 
     int sockfd; //socket()返回的文件描述符

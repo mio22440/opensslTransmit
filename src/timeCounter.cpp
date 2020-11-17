@@ -11,14 +11,16 @@
  * Date           Version     Author      Description
  * 2020-11-06     1.0         catfee      内容
  */
-#include "timeCounter.h"
+#include "../include/timeCounter.h"
 
 int timeCounter::startCounter(void){
     gettimeofday(&this->start, NULL);
+    return 1;
 }
 
 int timeCounter::stopCounter(void){
     gettimeofday(&this->stop, NULL);
+    return 1;
 }
 
 long int timeCounter::getDurationUs(void){

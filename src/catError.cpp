@@ -9,7 +9,7 @@
  * 
  */
 /*******************include start**********************/
-#include "catError.h"
+#include "../include/catError.h"
 /*******************include end************************/
 /*******************definition start**********************/
 int catError(const char *sender, const char *error){

@@ -10,7 +10,7 @@
  */
 
 /*******************include start**********************/
-#include "sslSocketClient.h"
+#include "../include/sslSocketClient.h"
 /*******************include end************************/
 /*******************definition start**********************/
 sslSocketClient::sslSocketClient(char *ipSrv, char *portSrv, char *fileName)

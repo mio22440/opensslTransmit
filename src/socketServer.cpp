@@ -1,4 +1,4 @@
-#include "socketServer.h"
+#include "../include/socketServer.h"
 
 socketServer::socketServer(char *port){
     this->srv_port = atoi(port);

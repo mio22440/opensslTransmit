@@ -6,8 +6,8 @@
 /*******************definition end************************/
 int sslConsole::startAsClient(char *ipSrv, char *portSrv, char *fileName){
     this->myargc = 5;
-    this->myargv[0] = "sslConsole";
-    this->myargv[1] = "client";
+    this->myargv[0] = (char*)"sslConsole";
+    this->myargv[1] = (char*)"client";
     this->myargv[2] = ipSrv;
     this->myargv[3] = portSrv;
     this->myargv[4] = fileName;
@@ -26,9 +26,10 @@ int sslConsole::startAsServer(char *port, char *fileName){
         this->myargc = 4;
     }
 
-    this->myargv[0] = "sslConsole";
-    this->myargv[1] = port;
-    this->myargv[2] = fileName;
+    this->myargv[0] = (char*)"sslConsole";
+    this->myargv[1] = (char*)"server";
+    this->myargv[2] = port;
+    this->myargv[3] = fileName;
 
     int ret = 0;
     ret = this->realStart(this->myargc, this->myargv);
@@ -57,7 +58,7 @@ int sslConsole::realStart(int myargc, char **myargv){
     }
     else if((myargc == 4) && (strcmp("server", myargv[1]) == 0)){
         //执行server工作:指定了文件名的情况
-        sslSocketServer server(myargv[2], myargv[3], "./certs/cert.crt", "./certs/rsa_aes_private.key");
+        sslSocketServer server(myargv[2], myargv[3], "../../../certs/cert.crt", "../../../certs/rsa_aes_private.key");
         server.sslServerInit();
         ret = server.sslFileRecv();
         if(ret == -1){
@@ -67,7 +68,7 @@ int sslConsole::realStart(int myargc, char **myargv){
     }
     else if((myargc == 3) && (strcmp("server", myargv[1]) == 0)){
         //未指定文件名的情况
-        sslSocketServer server(myargv[2], "./certs/cert.crt", "./certs/rsa_aes_private.key");
+        sslSocketServer server(myargv[2], "../../../certs/cert.crt", "../../../certs/rsa_aes_private.key");
         server.sslServerInit();
         ret = server.sslFileRecv();
         if(ret == -1){

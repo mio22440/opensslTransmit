@@ -132,7 +132,7 @@ struct tm *tmi;
         //获取日期和时间
         intps = time(NULL);
         tmi = localtime(&intps);
-        sprintf(this->fileName, "./test/fileRecv/clt.%d.%d.%d.%d.%d.%d", 1900+tmi->tm_year, tmi->tm_mon+1, tmi->tm_mday, tmi->tm_hour, tmi->tm_min, tmi->tm_sec);
+        sprintf(this->fileName, "../../../test/fileRecv/clt.%d.%d.%d.%d.%d.%d", 1900+tmi->tm_year, tmi->tm_mon+1, tmi->tm_mday, tmi->tm_hour, tmi->tm_min, tmi->tm_sec);
     }
 
     //创建文件

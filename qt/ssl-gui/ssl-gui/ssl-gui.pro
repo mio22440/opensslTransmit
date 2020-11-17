@@ -49,3 +49,8 @@ HEADERS += \
     ../../../include/timeCounter.h \
     ../../../include/catError.h
 
+LIBS += \
+    -lssl \
+    -lcrypto
+
+

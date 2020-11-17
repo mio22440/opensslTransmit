@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-    free(this->filePath);
+    //free(this->filePath);
 }
 
 //my functions
@@ -38,6 +38,14 @@ int MainWindow::sendOrReceiveFile(void){
     this->ui->lbl_error_setting->setText("");
 
     //get arg from edit text
+    tmpQs = this->ui->te_file_path->toPlainText();
+    tmpQba = tmpQs.toLatin1();
+    this->filePath = tmpQba.data();
+    if(this->ui->te_file_path->document()->isEmpty()){
+        this->filePath = NULL;
+    }
+    qDebug() << this->filePath << endl;
+
     tmpQs = this->ui->te_srv_ip->toPlainText();
     tmpQba = tmpQs.toLatin1();
     this->ipSrv = tmpQba.data();
@@ -180,6 +188,7 @@ void MainWindow::getFilePath(){
     //transfer from QString to char*
     QByteArray qba = qFilePath.toLatin1();
     this->filePath = qba.data();
+    strcpy(this->testFilePath, this->filePath);
     qDebug() << this->filePath << endl;
 }
 

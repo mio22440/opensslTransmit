@@ -40,7 +40,7 @@ DISTNAME      = ssl-gui1.0.0
 DISTDIR = /home/catfee/Desktop/opensslProjs/opensslTransmit/qt/ssl-gui/build-ssl-gui-Desktop_Qt_5_14_2_GCC_64bit-Debug/.tmp/ssl-gui1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/catfee/Qt5.14.2/5.14.2/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/catfee/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Widgets.so /home/catfee/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Gui.so /home/catfee/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) -lssl -lcrypto /home/catfee/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Widgets.so /home/catfee/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Gui.so /home/catfee/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -1183,65 +1183,41 @@ mainwindow.o: ../ssl-gui/mainwindow.cpp ../ssl-gui/mainwindow.h \
 		../../../include/catError.h \
 		../../../include/sslSocketServer.h \
 		../../../include/socketServer.h \
-		ui_mainwindow.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/QVariant \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QAction \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qaction.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qactiongroup.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QApplication \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qapplication.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/qcoreapplication.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/qeventloop.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qguiapplication.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qinputmethod.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QGraphicsView \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qgraphicsview.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qpainter.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qtextoption.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qpen.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qscrollarea.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qframe.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QLabel \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qlabel.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QMenu \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qmenu.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QMenuBar \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qmenubar.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QPushButton \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qabstractbutton.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QStatusBar \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qstatusbar.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QTextEdit \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qtextedit.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qtextdocument.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qtextcursor.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qtextformat.h \
-		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QWidget
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ssl-gui/mainwindow.cpp
 
-sslConsole.o: ../../../src/sslConsole.cpp 
+sslConsole.o: ../../../src/sslConsole.cpp ../../../include/sslConsole.h \
+		../../../include/sslSocketClient.h \
+		../../../include/socketClient.h \
+		../../../include/timeCounter.h \
+		../../../include/catError.h \
+		../../../include/sslSocketServer.h \
+		../../../include/socketServer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sslConsole.o ../../../src/sslConsole.cpp
 
-socketClient.o: ../../../src/socketClient.cpp 
+socketClient.o: ../../../src/socketClient.cpp ../../../include/socketClient.h \
+		../../../include/timeCounter.h \
+		../../../include/catError.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o socketClient.o ../../../src/socketClient.cpp
 
-socketServer.o: ../../../src/socketServer.cpp 
+socketServer.o: ../../../src/socketServer.cpp ../../../include/socketServer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o socketServer.o ../../../src/socketServer.cpp
 
-sslSocketClient.o: ../../../src/sslSocketClient.cpp 
+sslSocketClient.o: ../../../src/sslSocketClient.cpp ../../../include/sslSocketClient.h \
+		../../../include/socketClient.h \
+		../../../include/timeCounter.h \
+		../../../include/catError.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sslSocketClient.o ../../../src/sslSocketClient.cpp
 
-sslSocketServer.o: ../../../src/sslSocketServer.cpp 
+sslSocketServer.o: ../../../src/sslSocketServer.cpp ../../../include/sslSocketServer.h \
+		../../../include/socketServer.h \
+		../../../include/catError.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sslSocketServer.o ../../../src/sslSocketServer.cpp
 
-timeCounter.o: ../../../src/timeCounter.cpp 
+timeCounter.o: ../../../src/timeCounter.cpp ../../../include/timeCounter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o timeCounter.o ../../../src/timeCounter.cpp
 
-catError.o: ../../../src/catError.cpp 
+catError.o: ../../../src/catError.cpp ../../../include/catError.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o catError.o ../../../src/catError.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

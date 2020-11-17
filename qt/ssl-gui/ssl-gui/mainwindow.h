@@ -39,6 +39,7 @@ private:
     char *ipSrv;
     char *port;
     char *filePath;
+    char testFilePath[500];
     sslConsole sslCsl;
 
 

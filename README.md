@@ -15,35 +15,52 @@
 ├── imgs
 ├── include
 ├── obj
+├── qt
+│   └── ssl-gui
+│       ├── build-ssl-gui-Desktop_Qt_5_14_2_GCC_64bit-Debug
+│       ├── build-ssl-gui-Desktop_Qt_5_14_2_GCC_64bit-Release
+│       └── ssl-gui
 ├── src
 └── test
     ├── fileRecv
     └── fileTrans
 ```
 ### 依赖环境
-`build-essential libssl-dev`
+`build-essential libssl-dev qt`
 ### 运行方法
 1 安装依赖环境
 
+openssl:
+
 `$ sudo apt-get install libssl-dev`
+
+qt:
+
+`http://download.qt.io/official_releases/qt/`
+
 2 下载源代码
 
 `$ git clone https://github.com/ca1fee/opensslTransmit.git`
 
-3 切换到ssl-console分支
-`$ git checkout ssl-console`
+3 切换到ssl-gui分支
+`$ git checkout ssl-gui`
 
-4 make
+4 切换到目录
 
-`$make`
+`$ cd opensslTransmit/qt/ssl-gui/build-ssl-gui-Desktop_Qt_5_14_2_GCC_64bit-Release/
+`
 
-![avatar](./imgs/ssl_console_make.png)
+![avatar](./imgs/ssl_gui_cd.png)
 
-5 运行服务端程序
+5 运行客户端
 
-`$ ./bin/main server <监听端口> [ <接收文件名> ]`
+`$ ./ssl-gui`
 
-![avatar](./imgs/ssl_console_run_as_server.png)
+![avatar](./imgs/ssl_gui_run.png)
+
+6 选择接收
+
+![avatar](./imgs/ssl_gui_run.png)
 
 6 运行客户端程序
 

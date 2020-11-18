@@ -84,10 +84,27 @@ int MainWindow::sendOrReceiveFile(void){
 }
 
 int MainWindow::setValues(void){
+    //local var
+
     this->mode = -1;
     this->ipSrv = NULL;
     this->port = NULL;
     this->filePath = NULL;
+
+    //set logo image
+    QString filename = "../../../imgs/logo.png";
+    QImage *tmpImg = new QImage;
+    if(!tmpImg->load(filename)){
+        printf("fail to load logo\n");
+        return -1;
+    }
+    //scale the logo
+    QImage *imgScaled = new QImage;
+    *imgScaled = tmpImg->scaled(
+                280,
+                140,
+                Qt::KeepAspectRatio);
+    this->ui->lbl_logo->setPixmap(QPixmap::fromImage(*imgScaled));
     //qDebug() << this->filePath << endl;
     return 1;
 }
@@ -95,10 +112,11 @@ int MainWindow::setValues(void){
 int MainWindow::setVisibility(void){
     switch(this->mode){
     case -1:
-        this->ui->gv_logo->setVisible(true);
         this->ui->lbl_error_setting->setVisible(false);
+        this->ui->lbl_logo->setVisible(true);
         this->ui->lbl_tips_port->setVisible(false);
         this->ui->lbl_tips_file_path->setVisible(false);
+        this->ui->lbl_tips_guide->setVisible(true);
         this->ui->lbl_tips_srv_ip->setVisible(false);
         this->ui->lbl_welcome->setVisible(true);
         this->ui->pb_apply->setVisible(false);
@@ -109,10 +127,11 @@ int MainWindow::setVisibility(void){
 
         break;
     case 0:
-        this->ui->gv_logo->setVisible(true);
         this->ui->lbl_error_setting->setVisible(true);
+        this->ui->lbl_logo->setVisible(true);
         this->ui->lbl_tips_port->setVisible(true);
         this->ui->lbl_tips_file_path->setVisible(true);
+        this->ui->lbl_tips_guide->setVisible(false);
         this->ui->lbl_tips_srv_ip->setVisible(true);
         this->ui->lbl_welcome->setVisible(false);
         this->ui->pb_apply->setVisible(true);
@@ -122,10 +141,11 @@ int MainWindow::setVisibility(void){
         this->ui->te_srv_ip->setVisible(true);
         break;
     case 1:
-        this->ui->gv_logo->setVisible(true);
         this->ui->lbl_error_setting->setVisible(true);
+        this->ui->lbl_logo->setVisible(true);
         this->ui->lbl_tips_port->setVisible(true);
         this->ui->lbl_tips_file_path->setVisible(true);
+        this->ui->lbl_tips_guide->setVisible(false);
         this->ui->lbl_tips_srv_ip->setVisible(false);
         this->ui->lbl_welcome->setVisible(false);
         this->ui->pb_apply->setVisible(true);
@@ -188,7 +208,7 @@ void MainWindow::getFilePath(){
     //transfer from QString to char*
     QByteArray qba = qFilePath.toLatin1();
     this->filePath = qba.data();
-    strcpy(this->testFilePath, this->filePath);
+    //strcpy(this->testFilePath, this->filePath);
     qDebug() << this->filePath << endl;
 }
 

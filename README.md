@@ -1,8 +1,8 @@
 # opensslTransmit
 ## 基于openssl的加密文件传输软件
 
-## ssl-gui分支
-在ssl-console版本基础上增加gui功能
+## dev 分支
+和最新的ssl-gui同步
 
 ### 目录结构
 ```

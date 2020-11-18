@@ -56,18 +56,26 @@ qt:
 
 `$ ./ssl-gui`
 
-![avatar](./imgs/ssl_gui_run.png)
+![avatar](./imgs/ssl_gui_main_window.png)
 
-6 选择接收
+6 选择接收或发送
 
-![avatar](./imgs/ssl_gui_run.png)
+![avatar](./imgs/ssl_gui_choose.png)
 
-6 运行客户端程序
+7 设定相应的参数
 
-`$ ./bin/main client <服务器ip> <服务器端口> <传输文件名>`
+接收的设定
 
-![avatar](./imgs/ssl_console_run_as_client.png)
+![avatar](./imgs/ssl_gui_receive_setting.png)
 
-**即可在运行目录(或者指定的目录)找到传输的文件，格式为：clt.年.月.日.时.分.秒(或指定的目录和文件名)**
+发送的设定
 
-![avatar](./imgs/ssl_console_result.png)
+![avatar](./imgs/ssl_gui_send_setting.png)
+
+8 运行效果
+
+![avatar](./imgs/ssl_gui_result.png)
+
+**即可在test/fileRecv(或者指定的目录)找到传输的文件，格式为：clt.年.月.日.时.分.秒(或指定的目录和文件名)**
+
+![avatar](./imgs/ssl_gui_file_receive.png)

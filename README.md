@@ -1,9 +1,8 @@
 # opensslTransmit
 ## 基于openssl的加密文件传输软件
 
-## dev 分支
-和最新的ssl-gui同步
-
+## main 分支
+第一次更新的主分支
 ### 目录结构
 ```
 .
@@ -42,27 +41,25 @@ qt:
 
 `$ git clone https://github.com/ca1fee/opensslTransmit.git`
 
-3 切换到ssl-gui分支
-`$ git checkout ssl-gui`
 
-4 切换到目录
+3 切换到目录
 
 `$ cd opensslTransmit/qt/ssl-gui/build-ssl-gui-Desktop_Qt_5_14_2_GCC_64bit-Release/
 `
 
 ![avatar](./imgs/ssl_gui_cd.png)
 
-5 运行客户端
+4 运行客户端
 
 `$ ./ssl-gui`
 
 ![avatar](./imgs/ssl_gui_main_window.png)
 
-6 选择接收或发送
+5 选择接收或发送
 
 ![avatar](./imgs/ssl_gui_choose.png)
 
-7 设定相应的参数
+6 设定相应的参数
 
 接收的设定
 
@@ -72,7 +69,7 @@ qt:
 
 ![avatar](./imgs/ssl_gui_send_setting.png)
 
-8 运行效果
+7 运行效果
 
 ![avatar](./imgs/ssl_gui_result.png)
 

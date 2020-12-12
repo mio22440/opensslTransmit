@@ -1,0 +1,1 @@
+int pam_login(char *username);

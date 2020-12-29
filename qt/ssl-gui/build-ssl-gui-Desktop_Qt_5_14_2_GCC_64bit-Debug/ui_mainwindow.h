@@ -42,6 +42,7 @@ public:
     QTextEdit *te_port;
     QLabel *lbl_logo;
     QLabel *lbl_tips_guide;
+    QPushButton *pb_pause;
     QMenuBar *mb_choose_mode;
     QMenu *menumode;
     QStatusBar *statusbar;
@@ -76,7 +77,7 @@ public:
         lbl_tips_file_path->setGeometry(QRect(30, 140, 161, 16));
         pb_apply = new QPushButton(centralwidget);
         pb_apply->setObjectName(QString::fromUtf8("pb_apply"));
-        pb_apply->setGeometry(QRect(210, 380, 151, 31));
+        pb_apply->setGeometry(QRect(110, 380, 151, 31));
         lbl_welcome = new QLabel(centralwidget);
         lbl_welcome->setObjectName(QString::fromUtf8("lbl_welcome"));
         lbl_welcome->setGeometry(QRect(240, 120, 81, 16));
@@ -96,6 +97,9 @@ public:
         lbl_tips_guide = new QLabel(centralwidget);
         lbl_tips_guide->setObjectName(QString::fromUtf8("lbl_tips_guide"));
         lbl_tips_guide->setGeometry(QRect(160, 180, 251, 41));
+        pb_pause = new QPushButton(centralwidget);
+        pb_pause->setObjectName(QString::fromUtf8("pb_pause"));
+        pb_pause->setGeometry(QRect(340, 380, 131, 31));
         MainWindow->setCentralWidget(centralwidget);
         mb_choose_mode = new QMenuBar(MainWindow);
         mb_choose_mode->setObjectName(QString::fromUtf8("mb_choose_mode"));
@@ -135,6 +139,7 @@ public:
         lbl_tips_port->setText(QCoreApplication::translate("MainWindow", "port:", nullptr));
         lbl_logo->setText(QString());
         lbl_tips_guide->setText(QCoreApplication::translate("MainWindow", "click \"mode\" to select function", nullptr));
+        pb_pause->setText(QCoreApplication::translate("MainWindow", "pause", nullptr));
         menumode->setTitle(QCoreApplication::translate("MainWindow", "mode", nullptr));
     } // retranslateUi
 

@@ -54,7 +54,7 @@ int MainWindow::sendOrReceiveFile(void){
     tmpQba = tmpQs.toLatin1();
     this->port = tmpQba.data();
 
-    if((this->ipSrv == NULL) || (this->port == NULL)){
+    if((this->ipSrv[0] == '\0') || (this->port[0] == '\0')){
         this->ui->lbl_error_setting->setText("ip or port not set yet");
         qDebug() << "ip or port not set yet" << endl;
         return 1;
@@ -111,7 +111,7 @@ int MainWindow::setValues(void){
 
 int MainWindow::setVisibility(void){
     switch(this->mode){
-    case -1:
+    case -1://初始模式
         this->ui->lbl_error_setting->setVisible(false);
         this->ui->lbl_logo->setVisible(true);
         this->ui->lbl_tips_port->setVisible(false);
@@ -121,12 +121,13 @@ int MainWindow::setVisibility(void){
         this->ui->lbl_welcome->setVisible(true);
         this->ui->pb_apply->setVisible(false);
         this->ui->pb_choose_file->setVisible(false);
+        this->ui->pb_pause->setVisible(false);
         this->ui->te_file_path->setVisible(false);
         this->ui->te_port->setVisible(false);
         this->ui->te_srv_ip->setVisible(false);
 
         break;
-    case 0:
+    case 0://发送模式
         this->ui->lbl_error_setting->setVisible(true);
         this->ui->lbl_logo->setVisible(true);
         this->ui->lbl_tips_port->setVisible(true);
@@ -136,11 +137,12 @@ int MainWindow::setVisibility(void){
         this->ui->lbl_welcome->setVisible(false);
         this->ui->pb_apply->setVisible(true);
         this->ui->pb_choose_file->setVisible(true);
+        this->ui->pb_pause->setVisible(true);
         this->ui->te_file_path->setVisible(true);
         this->ui->te_port->setVisible(true);
         this->ui->te_srv_ip->setVisible(true);
         break;
-    case 1:
+    case 1://接收模式
         this->ui->lbl_error_setting->setVisible(true);
         this->ui->lbl_logo->setVisible(true);
         this->ui->lbl_tips_port->setVisible(true);
@@ -150,6 +152,7 @@ int MainWindow::setVisibility(void){
         this->ui->lbl_welcome->setVisible(false);
         this->ui->pb_apply->setVisible(true);
         this->ui->pb_choose_file->setVisible(false);
+        this->ui->pb_pause->setVisible(true);
         this->ui->te_file_path->setVisible(true);
         this->ui->te_port->setVisible(true);
         this->ui->te_srv_ip->setVisible(false);

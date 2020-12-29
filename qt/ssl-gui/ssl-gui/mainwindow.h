@@ -22,6 +22,7 @@ public:
 
     int setSigAndSlot(void);//call connect to set signals and slots
 
+    int mutiThreadSendOrReceive(void);
     int sendOrReceiveFile(void);
 
     int setValues(void);

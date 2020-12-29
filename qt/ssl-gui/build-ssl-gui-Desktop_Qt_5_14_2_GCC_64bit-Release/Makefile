@@ -261,6 +261,7 @@ DIST          = /home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_pre.pr
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_post.prf \
+		../ssl-gui/.qmake.stash \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -498,6 +499,7 @@ Makefile: ../ssl-gui/ssl-gui.pro /home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/lin
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -710,6 +712,7 @@ Makefile: ../ssl-gui/ssl-gui.pro /home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/lin
 /home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/qt_config.prf:
 /home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/toolchain.prf:
 /home/catfee/Qt5.14.2/5.14.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -901,6 +904,8 @@ moc_mainwindow.cpp: ../ssl-gui/mainwindow.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/qdir.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/qfileinfo.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QMessageBox \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qmessagebox.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/QDebug \
 		../../../include/sslConsole.h \
 		../../../include/sslSocketClient.h \
@@ -1047,6 +1052,8 @@ main.o: ../ssl-gui/main.cpp ../ssl-gui/mainwindow.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/qdir.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/qfileinfo.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QMessageBox \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qmessagebox.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/QDebug \
 		../../../include/sslConsole.h \
 		../../../include/sslSocketClient.h \
@@ -1177,6 +1184,8 @@ mainwindow.o: ../ssl-gui/mainwindow.cpp ../ssl-gui/mainwindow.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/qdir.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/qfileinfo.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QMessageBox \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qmessagebox.h \
 		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/QDebug \
 		../../../include/sslConsole.h \
 		../../../include/sslSocketClient.h \
@@ -1185,7 +1194,39 @@ mainwindow.o: ../ssl-gui/mainwindow.cpp ../ssl-gui/mainwindow.h \
 		../../../include/catError.h \
 		../../../include/sslSocketServer.h \
 		../../../include/socketServer.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/QVariant \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QAction \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qaction.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QApplication \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtCore/qeventloop.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qguiapplication.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qinputmethod.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QLabel \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qframe.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QMenu \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qmenu.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QMenuBar \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QPushButton \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QStatusBar \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QTextEdit \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qtextedit.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qtextdocument.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qtextoption.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qtextcursor.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qtextformat.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtGui/qpen.h \
+		/home/catfee/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ssl-gui/mainwindow.cpp
 
 sslConsole.o: ../../../src/sslConsole.cpp ../../../include/sslConsole.h \
